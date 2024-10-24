@@ -1,0 +1,17 @@
+<!-- Parent component template (e.g., todos.component.html) -->
+<div class="container">
+  <h1 class="text-center mb-2">TODO List Of Aniket</h1>
+<app-add-todo (todoAdd)="addTodo($event)" ></app-add-todo>
+<h3>Your TODOs</h3>
+<div *ngIf="this.todos.length === 0; else elseBlock">No TODOs To Display</div>
+<ng-template #elseBlock>
+  <div *ngFor="let todo of todos; index as i">
+    <app-todo-item
+      [todo]="todo"
+      [i]="i"
+      (todoDelete)="deleteTodo($event)"
+      (todoCheckBox)="toggleTodo($event)"
+    ></app-todo-item>
+  </div>
+</ng-template>
+</div>
